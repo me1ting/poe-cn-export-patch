@@ -1,0 +1,5 @@
+开发测试数据：
+
+tree_demo.json 天赋树JSON测试数据
+tree_code_demo.txt 处理后的测试数据
+encode_tree.py 读取原始数据，压缩、编码、替换，得到处理后的数据

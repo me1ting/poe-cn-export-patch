@@ -1,0 +1,5 @@
+开发测试数据：
+
+items_demo.json 物品JSON数据
+items_code_demo.txt 处理后的测试数据
+encode_items.py 读取items_demo.json，压缩、编码、替换，得到items_code_demo.txt
