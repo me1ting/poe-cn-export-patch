@@ -182,7 +182,7 @@ You can get this from your web browser's cookies while logged into the Path of E
 		return (self.customImportItemsCodeState == "VALID" and colorCodes.POSITIVE.."Code is valid") or (self.customImportItemsCodeState == "INVALID" and colorCodes.NEGATIVE.."Invalid code") or ""
 	end
 
-	self.controls.customImportTreeLabel = new("LabelControl", {"TOPLEFT",self.controls.customImportItemsCodeIn,"TOPLEFT"}, 0, 30, 0, 16, "^7Passive tree code:")
+	self.controls.customImportTreeLabel = new("LabelControl", {"TOPLEFT",self.controls.customImportItemsCodeIn,"TOPLEFT"}, 0, 30, 0, 16, "^7Passive Tree code:")
 	self.controls.customImportTreeCodeIn = new("EditControl", {"TOPLEFT",self.controls.customImportTreeLabel,"BOTTOMLEFT"}, 0, 4, 250, 20, "", nil, "^%w_%-=", nil, function(buf)
 		if #buf == 0 then
 			self.customImportTreeCodeState = nil
