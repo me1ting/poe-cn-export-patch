@@ -162,7 +162,7 @@ You can get this from your web browser's cookies while logged into the Path of E
 	end)
 	
 	-- Custom import
-	self.controls.customImport = new("SectionControl", {"TOPLEFT",self.controls.sectionCharImport,"BOTTOMLEFT"}, 0, 18, 600, 200, "Custom Import")
+	self.controls.customImport = new("SectionControl", {"TOPLEFT",self.controls.sectionCharImport,"BOTTOMLEFT"}, 0, 18, 600, 150, "Custom Import")
 	self.controls.customImportItemsLabel = new("LabelControl", {"TOPLEFT",self.controls.customImport,"TOPLEFT"}, 6, 14, 0, 16, "^7Items code:")
 	self.controls.customImportItemsCodeIn = new("EditControl", {"TOPLEFT",self.controls.customImportItemsLabel,"BOTTOMLEFT"}, 0, 4, 250, 20, "", nil, "^%w_%-=", nil, function(buf)
 		if #buf == 0 then
@@ -181,6 +181,10 @@ You can get this from your web browser's cookies while logged into the Path of E
 	self.controls.customImportItemsCodeState.label = function()
 		return (self.customImportItemsCodeState == "VALID" and colorCodes.POSITIVE.."Code is valid") or (self.customImportItemsCodeState == "INVALID" and colorCodes.NEGATIVE.."Invalid code") or ""
 	end
+	self.controls.customImportItemsClearSkills = new("CheckBoxControl", {"LEFT",self.controls.customImportItemsCodeIn,"RIGHT"}, 175, 0, 18, "Delete skills:")
+	self.controls.customImportItemsClearSkills.tooltipText = "Delete all existing skills when importing."
+	self.controls.customImportItemsClearItems = new("CheckBoxControl", {"LEFT",self.controls.customImportItemsCodeIn,"RIGHT"}, 310, 0, 18, "Delete equipment:")
+	self.controls.customImportItemsClearItems.tooltipText = "Delete all equipped items when importing."
 
 	self.controls.customImportTreeLabel = new("LabelControl", {"TOPLEFT",self.controls.customImportItemsCodeIn,"TOPLEFT"}, 0, 30, 0, 16, "^7Passive Tree code:")
 	self.controls.customImportTreeCodeIn = new("EditControl", {"TOPLEFT",self.controls.customImportTreeLabel,"BOTTOMLEFT"}, 0, 4, 250, 20, "", nil, "^%w_%-=", nil, function(buf)
@@ -200,8 +204,13 @@ You can get this from your web browser's cookies while logged into the Path of E
 	self.controls.customImportTreeCodeState.label = function()
 		return (self.customImportTreeCodeState == "VALID" and colorCodes.POSITIVE.."Code is valid") or (self.customImportTreeCodeState == "INVALID" and colorCodes.NEGATIVE.."Invalid code") or ""
 	end
+	self.controls.customImportTreeClearJewels = new("CheckBoxControl", {"LEFT",self.controls.customImportTreeCodeIn,"RIGHT"}, 180, 0, 18, "Delete jewels:")
+	self.controls.customImportTreeClearJewels.tooltipText = "Delete all existing jewels when importing."
 	
 	self.controls.customImportGo = new("ButtonControl", {"TOPLEFT",self.controls.customImportTreeCodeIn,"BOTTOMLEFT"}, 0, 10, 60, 20, "Import", function()
+		self.controls.charImportItemsClearSkills.state = self.controls.customImportItemsClearSkills.state
+		self.controls.charImportItemsClearItems.state = self.controls.customImportItemsClearItems.state
+		self.controls.charImportTreeClearJewels.state = self.controls.customImportTreeClearJewels
 		local charData = self:ImportItemsAndSkills(self.customImportItemsCode)
 		self:ImportPassiveTreeAndJewels(self.customImportTreeCode, charData)
 	end)
